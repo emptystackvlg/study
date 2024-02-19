@@ -1,0 +1,27 @@
+ WebClient myWebClient = new WebClient();
+            string url = "https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BE7CE8DFB-663D-7D9B-3F04-7B7B6A771360%7D%26lang%3Dru%26browser%3D3%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup64.exe";
+            string filename = "test.exe";
+            string pathname = "D:\\";
+            string pathtofile = pathname + filename;
+            var webRequest = HttpWebRequest.Create(url);
+            webRequest.Method = "HEAD";
+            var webResponse = webRequest.GetResponse();
+            var fileSize = webResponse.Headers.Get("Content-Length");
+            var fileSizeInMegaByte = Math.Round(Convert.ToDouble(fileSize) / 1024.0 / 1024.0, 2);
+            Console.WriteLine(fileSizeInMegaByte);
+            myWebClient.DownloadFile(url, pathtofile);
+            GC.Collect();
+
+
+
+
+ IEnumerator myEnumerator;
+            myEnumerator = checkedListBox1.CheckedIndices.GetEnumerator();
+            int y;
+
+            while (myEnumerator.MoveNext() != false)
+            {
+                y = (int)myEnumerator.Current;
+                checkedListBox1.SetItemChecked(y, true);
+                Console.WriteLine( y); 
+            }
